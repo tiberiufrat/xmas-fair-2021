@@ -1,0 +1,60 @@
+<div class="header bg-<%= user_signed_in? ? current_user.theme || 'primary' : 'primary' %> pb-6">
+  <div class="container-fluid">
+    <div class="header-body">
+      <%= render partial: 'shared/header', locals: {
+            icon: 'far fa-home-lg',
+            breadcrumb_1: t('general.dashboard').capitalize,
+            breadcrumb_2: t('.search').capitalize
+      } %>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt--6">
+  <div class="row">
+    <div class="col">
+      <div class="card pb-3">
+        <!-- Card header -->
+        <div class="card-header border-0">
+          <div class="row">
+            <div class="col-6">
+              <h3 class="mb-0"><%= t('.youve_searched_for', term: @query) %></h3>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <!-- No results -->
+          <% if @users.none? && @stands.none? && @products.none? %>
+            <p class="lead"><%= t('.no_results_message', term: @query) %></p>
+          <% end %>
+
+          <!-- Users -->
+          <% if @users.any? %>
+            <h3><%= t('activerecord.models.user.other').capitalize %></h3>
+            <% @users.each do |user| %>
+              <%= render 'user_lists/user_card', user: user %>
+            <% end %>
+            <%= raw("<hr/>") if @stands.any? || @products.any? %>
+          <% end %>
+          <!-- Stands -->
+          <% if @stands.any? %>
+            <h3><%= t('activerecord.models.stand.other').capitalize %></h3>
+            <% @stands.each do |stand| %>
+              <%= render 'stands/stand_card', stand: stand %>
+            <% end %>
+            <%= raw("<hr/>") if @products.any? %>
+          <% end %>
+          <!-- Products -->
+          <% if @products.any? %>
+            <h3><%= t('activerecord.models.product.other').capitalize %></h3>
+            <% @products.each do |product| %>
+              <%= render 'products/product_card', product: product %>
+            <% end %>
+          <% end %>
+        </div>  
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for(:page_title, t('.search')) %>

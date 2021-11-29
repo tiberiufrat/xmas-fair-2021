@@ -1,0 +1,259 @@
+<div class="header bg-<%= current_user.preferences['theme'] || 'primary' %> pb-6">
+  <div class="container-fluid">
+    <div class="header-body">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2 text-white d-inline-block mb-0"><%= t('activerecord.models.stand.other').titleize %></h6>
+          <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+            <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+              <li class="breadcrumb-item">
+                <%= link_to '<i class="far fa-home"></i>'.html_safe, root_path %>
+              </li>
+              <li class="breadcrumb-item">
+                <%= link_to t('activerecord.models.stand.other').titleize, stands_path %>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page"><%= t 'general.new' %> <%= t('activerecord.models.stand.one') %></li>
+            </ol>
+          </nav>
+        </div>
+        <div class="col-lg-6 col-5 text-right">
+          
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt--6">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="mb-0"><i class="far fa-<%= @stand.icon.present? ? @stand.icon : 'store' %> mr-1"></i> <%= @stand.name %></h4>
+    </div>
+    <div class="card-body">
+      <dl class="row">
+        <dt class="col-sm-3"><%= t('activerecord.attributes.stand.operator').capitalize %>:</dt>
+        <dd class="col-sm-9"><%= render 'user_lists/user_list', user: @stand.operator %></dd>
+        <dt class="col-sm-3"><%= t('activerecord.attributes.stand.user_ids').capitalize %>:</dt>
+        <dd class="col-sm-9">
+          <% if @stand.users.any? %>
+            <ul>
+              <% @stand.users.each do |user| %>
+                <li><%= render 'user_lists/user_list', user: user %></li>
+              <% end %>
+            </ul>
+          <% else %>
+            <%= t'general.none' %>
+          <% end %>
+        </dd>
+      </dl>
+
+      <!-- Products accordion -->
+      <div class="accordion" id="productsAccordion">
+        <div class="card">
+          <div class="card-header" id="headingProducts" data-toggle="collapse" data-target="#collapseProducts" aria-expanded="true" aria-controls="collapseProducts">
+            <i class="far fa-gifts mr-1"></i> <%= t('activerecord.models.product.other').capitalize %> <span class="badge badge-default badge-pill ml-1"><%= @stand.products.size %></span>
+          </div>
+          <div id="collapseProducts" class="collapse" aria-labelledby="headingProducts" data-parent="#productsAccordion">
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                  <thead class="thead-light">
+                    <tr>
+                      <th><%= t ("activerecord.attributes.product.name") %></th>
+                      <th><%= t ("activerecord.attributes.product.price") %></th>
+                      <th><%= t ("activerecord.attributes.product.times_sold") %></th>
+                      <th scope="col" class="no-sort"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @stand.products.each do |product| %>
+                      <tr>
+                        <td><%= link_to product.name_with_icon, product, class: "text-#{ user_signed_in? ? current_user.theme || 'primary' : 'primary' }" %></td>
+                        <td><%= product.price %></td>
+                        <td><%= product.purchases.size %></td>
+                        <td class="table-actions">
+                          <%= link_to '<i class="far fa-eye"></i>'.html_safe, product, class: "table-action", data: { toggle: 'tooltip', 'original-title': t('general.view') } %>
+                          <%= link_to '<i class="far fa-user-edit"></i>'.html_safe, edit_product_path(product), class: "table-action", data: { toggle: 'tooltip', 'original-title': t('general.edit') } %>
+                          <%= link_to '<i class="far fa-trash"></i>'.html_safe, product, class: "table-action table-action-delete", data: { toggle: 'tooltip', 'original-title': t('general.delete'), confirm: t('general.are_you_sure_delete'), remote: true }, method: :delete %>
+                        </td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Purchases accordion -->
+      <div class="accordion" id="purchasesAccordion">
+        <div class="card">
+          <div class="card-header" id="headingPurchases" data-toggle="collapse" data-target="#collapsePurchases" aria-expanded="true" aria-controls="collapsePurchases">
+            <i class="far fa-cash-register mr-1"></i> <%= t('activerecord.models.purchase.other').capitalize %> <span class="badge badge-default badge-pill ml-1"><%= @stand.purchases.size %></span>
+          </div>
+          <div id="collapsePurchases" class="collapse" aria-labelledby="headingPurchases" data-parent="#purchasesAccordion">
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                  <thead class="thead-light">
+                    <tr>
+                      <th><%= t ("activerecord.attributes.purchase.id") %></th>
+                      <th><%= t ("activerecord.attributes.purchase.operator") %></th>
+                      <th><%= t ("activerecord.attributes.purchase.products_number") %></th>
+                      <th><%= t ("activerecord.attributes.purchase.price") %></th>
+                      <th scope="col" class="no-sort"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @stand.purchases.each do |purchase| %>
+                      <tr>
+                        <td><%= link_to "№#{purchase.id}", purchase, class: "badge badge-#{ user_signed_in? ? current_user.theme || 'primary' : 'primary' }" %></td>
+                        <td><%= purchase.operator.name %></td>
+                        <td><%= purchase.products_number %></td>
+                        <td><%= purchase.price %></td>
+                        <td class="table-actions">
+                          <%= link_to '<i class="far fa-eye"></i>'.html_safe, purchase, class: "table-action", data: { toggle: 'tooltip', 'original-title': t('general.view') } %>
+                          <%= link_to '<i class="far fa-user-edit"></i>'.html_safe, edit_purchase_path(purchase), class: "table-action", data: { toggle: 'tooltip', 'original-title': t('general.edit') } %>
+                          <%= link_to '<i class="far fa-trash"></i>'.html_safe, purchase, class: "table-action table-action-delete", data: { toggle: 'tooltip', 'original-title': t('general.delete'), confirm: t('general.are_you_sure_delete'), remote: true }, method: :delete %>
+                        </td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Statistics section -->
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="card card-stats">
+            <!-- Card body -->
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0"><%= t '.number_products_sold' %></h5>
+                  <span class="h2 font-weight-bold mb-0"><%= @stand.number_products_sold %></span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
+                    <i class="far fa-hand-holding-usd"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="card card-stats">
+            <!-- Card body -->
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0"><%= t '.value_products_sold' %></h5>
+                  <span class="h2 font-weight-bold mb-0"><%= @stand.value_products_sold %> <span class="small text-muted"><%= t('general.spiridoni', count: @stand.value_products_sold) %></span></span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-gradient-success text-white rounded-circle shadow">
+                    <i class="far fa-coins"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="card card-stats">
+            <!-- Card body -->
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0"><%= t '.percent_of_sales_by_num' %></h5>
+                  <span class="h2 font-weight-bold mb-0"><%= (@stand.number_products_sold.to_f / Product.total_number_sales * 100).round(1) %>%</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
+                    <i class="far fa-percentage"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="card card-stats">
+            <!-- Card body -->
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0"><%= t '.percent_of_sales_by_val' %></h5>
+                  <span class="h2 font-weight-bold mb-0"><%= (@stand.value_products_sold.to_f / Product.total_value_sales * 100).round(1) %>%</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-gradient-success text-white rounded-circle shadow">
+                    <i class="far fa-percentage"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="card card-stats">
+            <!-- Card body -->
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0"><%= t '.best_sold_product' %></h5>
+                  <span class="h2 font-weight-bold mb-0"><%= @stand.products.sort_by {|p| - p.purchases.size}[0].name %></span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-gradient-warning text-white rounded-circle shadow">
+                    <i class="far fa-<%= @stand.products.sort_by {|p| - p.purchases.size}[0].icon %>"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="card card-stats">
+            <!-- Card body -->
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0"><%= t '.worst_sold_product' %></h5>
+                  <span class="h2 font-weight-bold mb-0"><%= @stand.products.sort_by {|p| p.purchases.size}[0].name %></span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-gradient-warning text-white rounded-circle shadow">
+                    <i class="far fa-<%= @stand.products.sort_by {|p| p.purchases.size}[0].icon %>"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    
+    </div>
+  </div>
+  <%= link_to icon('far fa-arrow-left', t('general.back')), stands_path, class: 'btn btn-icon icon-left btn-secondary d-mobile-none mb-2' %>
+  <%= link_to icon('far fa-file-plus', t('.new_purchase_at_stand')), new_purchase_path(stand: @stand), class: 'btn btn-icon icon-left btn-success mb-2' %>
+  <%= link_to icon('far fa-plus-circle', t('.new_product_at_stand')), new_product_path(stand: @stand), class: 'btn btn-icon icon-left btn-info mb-2' %>
+  <%= link_to icon('far fa-edit', t('general.edit')), edit_stand_path(@stand), class: 'btn btn btn-icon icon-left btn-warning mb-2' %>
+  <%= link_to icon('far fa-trash', t('general.delete')), @stand, class: "btn btn btn-icon icon-left btn-danger mb-2", data: { confirm: t('general.are_you_sure_delete'), remote: true }, method: :delete %>
+</div>
+
+<% content_for(:page_title, t('general.show') + " Stand") %>

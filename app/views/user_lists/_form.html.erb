@@ -1,0 +1,62 @@
+<%= form_with(url: user_lists_path, data: { controller: 'validation' }) do |form| %>
+  <div class="row">
+    <div class="form-group col-md-6">
+      <%= form.label :first_name, t('activerecord.attributes.user.first_name'), class: 'form-control-label' %>
+      <%= form.text_field :first_name, class: 'form-control', required: true %>
+    </div>
+    <div class="form-group col-md-6">
+      <%= form.label :last_name, t('activerecord.attributes.user.last_name'), class: 'form-control-label' %>
+      <%= form.text_field :last_name, class: 'form-control', required: true %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-6">
+      <%= form.label :email, t('activerecord.attributes.user.email'), class: 'form-control-label' %>
+      <%= form.email_field :email, class: 'form-control', required: true %>
+    </div>
+    <div class="form-group col-md-6">
+      <%= form.label :phone, t('activerecord.attributes.user.phone'), class: 'form-control-label' %>
+      <span class="small text-muted"><%= t '.phone_requirement' %></span>
+      <%= form.telephone_field :phone, class: 'form-control', pattern: '07[0-9]{8}', 'aria-label' => 'mobile phone number 10 digits' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-6">
+      <%= form.label :password, t('activerecord.attributes.user.password'), class: 'form-control-label' %>
+      <span class="small text-muted"><%= t '.pass_requirement' %></span>
+      <%= form.password_field :password, class: 'form-control', required: true %>
+    </div>
+    <div class="form-group col-md-6">
+      <%= form.label :password_confirmation, t('activerecord.attributes.user.password_confirmation'), class: 'form-control-label' %>
+      <%= form.password_field :password_confirmation, class: 'form-control', required: true %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-6">
+      <%= form.label :department, t('activerecord.attributes.user.department'), class: 'form-control-label' %>
+      <%= form.select :department, [['Logistics', 0], ['Marketing & Communication', 1], ['Human resources', 2], ['Finance', 3], ['Graphic design', 4], ['Photography', 5]], { prompt: "#{t('activerecord.attributes.user.department')}…" }, { class: 'form-control', data: { controller: 'select' }} %>
+    </div>
+    <div class="form-group col-md-6">
+      <%= form.label :position, t('activerecord.attributes.user.position'), class: 'form-control-label' %>
+      <%= form.select :position, [['Team member', 0], ['Co-ordinator', 1], ['Project manager', 2], ['Special member', 3]], { prompt: "#{t('activerecord.attributes.user.position')}…" }, { class: 'form-control', required: true, data: { controller: 'select' }} %>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="form-group col-md-6">
+      <%= form.label :grade, t('activerecord.attributes.user.grade'), class: 'form-control-label' %>
+      <%= form.select :grade, [['9 α', 5], ['9 ω', 6], ['10 α', 2], ['10 δ', 3], ['10 ω', 4], ['11', 1], ['12', 0]], { prompt: "#{t('activerecord.attributes.user.grade')}…" }, { class: 'form-control', required: true, data: { controller: 'select' }} %>
+    </div>
+    <div class="form-group col-md-6">
+      <%= form.label :admin, t('activerecord.attributes.user.admin'), class: 'form-control-label' %>
+      <%= form.select :admin, [['No', false], ['Yes', true]], {}, { class: 'form-control', required: true, data: { controller: 'select' }} %>
+    </div>
+  </div>
+
+<div class="card-footer pl-0 pb-0">
+  <%= form.submit class: 'btn btn-success' %>
+</div>
+<% end %>

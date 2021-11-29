@@ -64,5 +64,12 @@ $fa-font-path: '@nguyenthanh1995/fontawesomepro/webfonts';
 @import 'custom/utilities';
 @import 'custom/vendors';
 
+// Select2
+@import "select2/dist/css/select2.min.css";
+@import "vendor/select2/dist/css/select2.min.css";
+
+// SweetAlert2
+@import "vendor/sweetalert2/dist/sweetalert2.min.css";
+
 // custom
-@import "./custom"
+@import "./custom";

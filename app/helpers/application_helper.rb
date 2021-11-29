@@ -34,6 +34,12 @@ module ApplicationHelper
   end
   alias :l :localize
 
+  def sentence_case str
+      str = str.downcase
+      str[0] = str[0].upcase
+      str
+  end
+
   private
     def active_actions?(controller, actions)
       params[:controller].include?(controller) && actions.include?(params[:action])

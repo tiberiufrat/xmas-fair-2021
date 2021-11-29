@@ -5,5 +5,64 @@
 }
 
 table.dataTable tbody > tr.selected {
-	color: white;
+	background-color: var(--lighter);
+}
+
+// label.form-control-label {
+//     text-transform: capitalize;
+// }
+
+// div.container-fluid dt {
+//     text-transform: capitalize;
+// }
+
+.select2-selection__choice__remove {
+    padding-left: 5px;
+    margin-left: 1px !important;
+    color: white !important;
+}
+
+.select2-selection__choice__remove:hover {
+    color: black !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: var(--primary);
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__display {
+    margin-left: 15px;
+    color: white;
+}
+
+.select2-results__option--selected {
+    background-color: #ddd !important;
+}
+
+.select2-results__option--highlighted {
+    background-color: var(--primary) !important;
+}
+
+.font-fa, .select-with-icons {
+    font-family: "Font Awesome 5 Pro", sans-serif;
+}
+
+// Icons in the dropdown profile menu
+.dropdown-menu .dropdown-item > i {
+    vertical-align: -10%;
+}
+
+// Place nav icons in the middle
+.navbar-vertical.navbar-expand-xs .navbar-nav .nav-link {
+    padding: 0.675rem 1.1rem;
+}
+
+.navbar-vertical.navbar-expand-xs .navbar-nav > .nav-item > .nav-link.active {
+    padding-left: .6rem;
+}
+
+@media (min-width: 1200px) {
+    .sidenav .sidenav-toggler {
+        padding-left: 1.2rem;
+    }
 }

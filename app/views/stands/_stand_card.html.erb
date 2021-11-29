@@ -1,0 +1,31 @@
+<div class="accordion" id="stand<%= stand.id %>Accordion">
+	<div class="card">
+		<div class="card-header" id="headingStand<%= stand.id %>" data-toggle="collapse" data-target="#collapseStand<%= stand.id %>" aria-expanded="true" aria-controls="collapseStand<%= stand.id %>">
+      <i class="far fa-<%= stand.icon_with_default %> fa-fw mr-1"></i> <%= stand.name %>
+		</div>
+		<div id="collapseStand<%= stand.id %>" class="collapse" aria-labelledby="headingStand<%= stand.id %>" data-parent="#stand<%= stand.id %>Accordion">
+			<div class="card-body">
+				<div class="row">
+					<div class="col-md-9">
+						<p class="card-text">
+							<i class="far fa-clipboard-user fa-fw mr-1"></i> <strong><%= t('activerecord.attributes.stand.operator').capitalize %></strong>: <%= stand.operator.name %> <br/>
+							<i class="far fa-users fa-fw mr-1"></i> <strong><%= t('activerecord.attributes.stand.user_ids').capitalize %></strong>: 
+							<% if stand.users.any? %>
+								<ul>
+									<% stand.users.each do |user| %>
+										<li><%= user.name_grade %></li>
+									<% end %>
+								</ul>
+							<% else %>
+								<%= t('general.none') %>
+							<% end %>
+						</p>
+					</div>
+					<div class="col-md-3">
+						<%= link_to icon('far fa-eye', t('general.view')), stand, class: "btn btn-sm btn-#{user_signed_in? ? current_user.theme || 'primary' : 'primary'} float-right" %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+</div>

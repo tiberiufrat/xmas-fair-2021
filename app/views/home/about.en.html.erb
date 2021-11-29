@@ -1,0 +1,53 @@
+<div class="header bg-<%= user_signed_in? ? current_user.theme || 'primary' : 'primary' %> pb-6">
+  <div class="container-fluid">
+    <div class="header-body">
+      <%= render partial: 'shared/header', locals: {
+            icon: 'far fa-home-lg',
+            breadcrumb_1: t('general.dashboard').capitalize,
+            breadcrumb_2: t('.about').capitalize
+      } %>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt--6">
+  <div class="row">
+    <div class="col">
+      <div class="card pb-3">
+        <!-- Card header -->
+        <div class="card-header border-0">
+          <div class="row">
+            <div class="col-6">
+              <h3 class="mb-0"><%= t('.about') %></h3>
+            </div>
+          </div>
+        </div>
+        <!-- Card body -->
+        <div class="card-body">
+          <p class="lead">This application is offered freely for used within the Avenor Christmas Charity Fair. At the same time, its source code is available under the licence GPL-3, available below.</p>
+
+          <p class="lead"><strong>The Management System for the Avenor Christmas Charity Fair</strong><br/>Copyright &copy; 2021 Tiberiu Frățilă</p>
+
+          <div class="accordion" id="licenceAccordion">
+            <div class="card">
+              <div class="card-header" id="headingLicence" data-toggle="collapse" data-target="#collapseLicence" aria-expanded="true" aria-controls="collapseLicence">
+                <i class="far fa-file-certificate mr-1"></i> Licence
+              </div>
+              <div id="collapseLicence" class="collapse" aria-labelledby="headingLicence" data-parent="#licenceAccordion">
+                <div class="card-body">
+                  <p>Please find the full text of the licence here: <a href="https://www.gnu.org/licenses/gpl-3.0-standalone.html">https://www.gnu.org/licenses/gpl-3.0-standalone.html</a></p>
+                </div>
+              </div>
+            </div>  
+
+            <!-- GPLv3 logo -->
+            <div class="w-100 text-center">
+              <%= image_tag("brand/gpl-v3-logo.svg", height: '60px', class: 'mb-4') %>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

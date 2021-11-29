@@ -10,13 +10,16 @@ module XmasFair2021
   class Application < Rails::Application
     config.app                            = config_for(:config)
     config.i18n.available_locales         = %i[ro en]
-    config.i18n.default_locale            = :en
-    config.time_zone                      = 'UTC'
+    config.i18n.default_locale            = :ro
+    config.time_zone                      = 'Bucharest'
     config.generators.scaffold_stylesheet = false
 
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
+
+    # Load modules from /lib/modules
+    config.eager_load_paths += %W(#{config.root}/lib/modules)
 
     # Configuration for the application, engines, and railties goes here.
     #

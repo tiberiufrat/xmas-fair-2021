@@ -1,0 +1,22 @@
+<div class="accordion" id="product<%= product.id %>Accordion">
+	<div class="card">
+		<div class="card-header" id="headingProduct<%= product.id %>" data-toggle="collapse" data-target="#collapseProduct<%= product.id %>" aria-expanded="true" aria-controls="collapseProduct<%= product.id %>">
+      <i class="far fa-<%= product.icon_with_default %> fa-fw mr-1"></i> <%= product.name %>
+		</div>
+		<div id="collapseProduct<%= product.id %>" class="collapse" aria-labelledby="headingProduct<%= product.id %>" data-parent="#product<%= product.id %>Accordion">
+			<div class="card-body">
+				<div class="row">
+					<div class="col-md-9">
+						<p class="card-text">
+							<i class="far fa-coins fa-fw mr-1"></i> <strong><%= t('activerecord.attributes.product.price').capitalize %></strong>: <%= product.price %> <span class="text-muted small"><%= t('general.spiridoni', count: product.price) %></span><br/>
+							<i class="far fa-store fa-fw mr-1"></i> <strong><%= t('activerecord.models.stand.one').capitalize %></strong>: <%= link_to product.stand.name_with_icon, product.stand, class: 'badge badge-default' %>
+						</p>
+					</div>
+					<div class="col-md-3">
+						<%= link_to icon('far fa-eye', t('general.view')), product, class: "btn btn-sm btn-#{user_signed_in? ? current_user.theme || 'primary' : 'primary'} float-right" %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+</div>

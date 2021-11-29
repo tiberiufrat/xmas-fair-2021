@@ -19,8 +19,35 @@
   <body>
     <%= render 'shared/sidenav' %>
     <div class="main-content" id="panel">
+      <!-- Navbar -->
       <%= render partial: 'shared/topnav', locals: { bg_color_class: yield(:topnav_bg) } %>
+      
+      <!-- Notices & alerts -->
+      <% if notice || alert %>
+        <div class="bg-<%= user_signed_in? ? current_user.theme || 'primary' : 'primary' %>">
+          <% if notice %>
+            <div class="alert alert-default bg-default border-0 text-white mx-4 my-0">
+              <span class="alert-icon"><i class="far fa-info"></i></span>
+              <span class="alert-text"><strong><%= t 'general.notice' %></strong> <%= notice %></span>
+            </div>
+          <% end %>
+          
+          <% if alert %>
+            <div class="alert alert-warning bg-warning border-0 text-white mx-4 my-0">
+              <span class="alert-icon"><i class="far fa-exclamation"></i></span>
+              <span class="alert-text"><strong><%= t 'general.alert' %></strong> <%= alert %></span>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+
+      <!-- Content -->
       <%= content_for?(:content) ? yield(:content) : yield %>
+
+      <!-- Footer -->
+      <div class="px-4 pt-4">
+        <%= render 'shared/footer' %>
+      </div>
     </div>
     <%= render 'shared/toastr' %>
     <%= javascript_pack_tag 'argon', 'data-turbolinks-track': 'reload' %>

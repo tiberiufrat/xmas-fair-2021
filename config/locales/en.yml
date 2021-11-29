@@ -1,34 +1,3 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
   general:
     actions: Actions
@@ -46,11 +15,193 @@ en:
     current: Current
     next: Next
     are_you_sure_delete: Are you sure you want to delete this item?
+    none: None
+    dashboard: dashboard
+    successfully_created: was successfully created
+    successfully_updated: was successfully updated
+    successfully_destroyed: was successfully destroyed
+    alert: Alert
+    notice: Notice
+    sign_in: Sign in
+    sign_out: Sign out
+    total: total
+    profile: profile
+    ok: ok
+    spiridoni:
+      one: spiridon
+      other: spiridons
     
   activerecord:
     models:
+      purchase:
+        one: purchase
+        other: purchases
+      user:
+        one: user
+        other: users
+      stand:
+        one: booth
+        other: booths
+      product:
+        one: product
+        other: products
     attributes:
+      user:
+        first_name: First name
+        last_name: Last name
+        name: Name
+        department: Departament
+        position: Position
+        grade: Grade
+        email: E-mail address
+        phone: Phone №
+        admin: Is admin
+        password: Password
+        password_confirmation: Password confirmation
+        current_password: Current password
+      stand:
+        name: Name
+        icon: Icon
+        operator: Operator
+        user_ids: Assigned users
+      purchase:
+        operator: Cashier
+        id: Purchase №
+        amount: Amount
+        stand: Booth
+        price: Price
+        products_number: № of products
+        total_price: Total value
+      product:
+        stand: Booth
+        name: Name
+        icon: Icon
+        price: Price
+        times_sold: № of sales
   hello: "Hello world"
+
+  home:
+    search:
+      search: search
+      youve_searched_for: "You have searched for: “%{term}”"
+      no_results_message: "The search for “%{term}” did not find any results. Please make sure that you have written the term correctly or try using a less specific keyword."
+    profile:
+      edit_profile: edit profile
+      user_information: Profile information
+      contact_information: Conatct information
+      password: Change your password
+      dont_complete_no_change_password: Do not complete unless you wish to change your password.
+      verify_changes: Authorise changes
+      we_need_current_password: We need your current password to authenticate the changes you are trying to make.
+      edit_details: Edit profile details
+      change_position_message: To change your position, department, or booths, please contact an administrator.
+      stands_operated: 
+        zero: Booths operated
+        one: Booth operated
+        few: Booths operated
+        other: Booths operated
+      purchases_operated: 
+        zero: Purchases operated
+        one: Purchase operated
+        few: Purchases operated
+        other: Purchases operated
+      stands_associated:
+        zero: Booths you take part in
+        one: Booth you take part in
+        few: Booths you take part in
+        other: Booths you take part in
+    about:
+      about: About this app
+
+  stands:
+    show: 
+      new_purchase_at_stand: New purchase at this booth
+      new_product_at_stand: Add a product at this booth
+      number_products_sold: № of products sold
+      value_products_sold: Value of products sold
+      percent_of_sales_by_num: Percentage of all sales (by number)
+      percent_of_sales_by_val: Percentage of all sales (by value)
+      best_sold_product: Best sold product
+      worst_sold_product: Worst sold product
+
+  products:
+    show:
+      add_another_product: Add another product
+      percent_of_sales_by_num: Percentage of all sales (by number)
+      percent_of_sales_by_val: Percentage of all sales (by value)
+      total_sales: Total sales
+      number_sales: № of sales
+    index:
+      times_sold: times sold
+
+  purchases:
+    index:
+      register_new_purchase: Register a new purchase
+    new:
+      register_new_purchase: Register a new purchase
+
+  user_lists:
+    form:
+      phone_requirement: format as 07xxxxxxxx
+      pass_requirement: minimum 6 characters
+
+  pages:
+    login:
+      login: Sign in
+      title: Sign in
+      subtitle: Please sign in with the given credentials to access the platform
+      remember_me: Remember me
+      forgot_password: Forgot password
+      forgot_password_description: To reset your password, please contact an administrator.
+      sign_up: Sign up
+      sign_up_description: To create a new account, please contact an administrator.
+
+  departments:
+    logistics: logistics
+    communication: communication & marketing
+    hr: human resources
+    finance: finance
+    design: graphic design
+    photography: photography
+
+  positions:
+    team_member: team member
+    co_ordinator: "co-ordinator"
+    project_manager: project manager
+    special_member: special member
+
+  grades:
+    grade_9a: 9 α
+    grade_9o: 9 ω
+    grade_10a: 10 α
+    grade_10d: 10 δ
+    grade_10o: 10 ω
+    grade_11: 11
+    grade_12: 12
+    with_prefix:
+      grade_9a: grade 9 α
+      grade_9o: grade 9 ω
+      grade_10a: grade 10 α
+      grade_10d: grade 10 δ
+      grade_10o: grade 10 ω
+      grade_11: grade 11
+      grade_12: grade 12
+
+  metrics:
+    total_purchases: total purchases
+    purchases_today: 
+      zero: no purchases today
+      one: new purchase today
+      other: new purchases today
+    users: users
+    users_today:
+      zero: no new users today
+      one: new user today
+      other: new users today
+
+  alerts:
+    unavailable_language: The chosen language isn't available.
+    unavailable_theme: The chosen theme isn't available.
 
 # Custom formats
   number:

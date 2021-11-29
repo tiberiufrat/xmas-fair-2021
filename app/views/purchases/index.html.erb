@@ -1,0 +1,111 @@
+<div class="header bg-<%= current_user.preferences['theme'] || 'primary' %> pb-6">
+  <div class="container-fluid">
+    <div class="header-body">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2 text-white d-inline-block mb-0"><%= t('activerecord.models.purchase.other').titleize %></h6>
+          <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+            <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+              <li class="breadcrumb-item">
+                <%= link_to '<i class="far fa-home"></i>'.html_safe, root_path %>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page"><%= t('activerecord.models.purchase.other').titleize %></li>
+            </ol>
+          </nav>
+        </div>
+        <div class="col-lg-6 col-5 text-right">
+          
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt--6">
+  <div class="row">
+    <div class="col">
+      <div class="card pb-3">
+        <!-- Card header -->
+        <div class="card-header border-0">
+          <div class="row">
+            <div class="col-6">
+              <h3 class="mb-0"><%= t 'general.list_of' %> <%= t 'activerecord.models.purchase.other' %></h3>
+            </div>
+            <div class="col-6 text-right">
+              <%= link_to new_purchase_path, class: "btn btn-sm btn-#{ current_user.preferences['theme'] || 'primary'} btn-round btn-icon", data: { toggle: :tooltip, 'original-title': "#{ t 'general.add'} #{ t 'activerecord.models.purchase.one' }" } do %>
+                <span class="btn-inner--icon">
+                  <i class="far fa-cash-register" style="top: 0px"></i>
+                </span>
+                <span class="btn-inner--text"><%= t '.register_new_purchase' %></span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <!-- Light table -->
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush" id="datatable-basic">
+            <thead class="thead-light">
+              <tr>
+                <th><%= t "activerecord.attributes.purchase.id" %></th>
+                <th><%= t "activerecord.attributes.purchase.operator" %></th>
+                <th><%= t "activerecord.attributes.purchase.stand" %></th>
+                <th><%= t "activerecord.attributes.purchase.products_number" %></th>
+                <th><%= t "activerecord.attributes.purchase.price" %></th>
+                <th scope="col" class="no-sort"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @purchases.each do |purchase| %>
+                <tr>
+                  <td><%= link_to "№#{purchase.id}", purchase, class: "badge badge-#{ current_user.preferences['theme'] || 'primary'}" %></td>
+                  <td><%= render 'user_lists/user_list', user: purchase.operator %></td>
+                  <td><%= link_to purchase.stand.name_with_icon, purchase.stand, class: "text-#{current_user.preferences['theme'] || 'primary'}" %></td>
+                  <td><%= purchase.products.size %></td>
+                  <td><%= purchase.price %></td>
+                  <td class="table-actions">
+                    <%= link_to '<i class="far fa-eye"></i>'.html_safe, purchase, class: "table-action", data: { toggle: 'tooltip', 'original-title': t('general.view') } %>
+                    <%= link_to('<i class="far fa-user-edit"></i>'.html_safe, edit_purchase_path(purchase), class: "table-action", data: { toggle: 'tooltip', 'original-title': t('general.edit') }) if current_user.admin? %>
+                    <%= link_to('<i class="far fa-trash"></i>'.html_safe, purchase, class: "table-action table-action-delete", data: { toggle: 'tooltip', 'original-title': t('general.delete'), confirm: t('general.are_you_sure_delete'), remote: true }, method: :delete) if current_user.admin? %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <!-- Card footer -->
+        <!-- <div class="card-footer py-4">
+          <nav aria-label="...">
+            <ul class="pagination justify-content-end mb-0">
+              <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">
+                  <i class="fa fa-angle-left"></i>
+                  <span class="sr-only"><%= t 'general.previous' %></span>
+                </a>
+              </li>
+              <li class="page-item active">
+                <a class="page-link" href="#">1</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#">2
+                  <span class="sr-only">(<%= t 'general.current' %>)</span></a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#">3</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="#">
+                  <i class="fa fa-angle-right"></i>
+                  <span class="sr-only"><%= t 'general.next' %></span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div> -->
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<% content_for(:page_title, "#{ t 'general.list_of' } #{t('activerecord.models.purchase.other').titleize}") %>

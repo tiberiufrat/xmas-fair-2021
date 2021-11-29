@@ -1,0 +1,26 @@
+<div class="accordion" id="user<%= user.id %>Accordion">
+	<div class="card">
+		<div class="card-header" id="headingUser<%= user.id %>" data-toggle="collapse" data-target="#collapseUser<%= user.id %>" aria-expanded="true" aria-controls="collapseUser<%= user.id %>">
+      <% case user.position when "project_manager", "special_member" %>
+      	<i class="far fa-user-crown fa-fw mr-1"></i>
+      <% when "co_ordinator" %>
+      	<i class="far fa-user-tie fa-fw mr-1"></i>
+      <% else %>
+      	<i class="far fa-user fa-fw mr-1"></i>
+      <% end %>
+      <%= user.name %> <span class="text-muted ml-1"><%= t 'grades.with_prefix.' + user.grade %></span>
+		</div>
+		<div id="collapseUser<%= user.id %>" class="collapse" aria-labelledby="headingUser<%= user.id %>" data-parent="#user<%= user.id %>Accordion">
+			<div class="card-body">
+				<p class="card-text">
+					<strong><%= t('positions.' + user.position).capitalize %></strong><%= ", " + t('departments.' + user.department).capitalize if user.department.present? %> <br/>
+					<i class="far fa-envelope fa-fw mr-1"></i> <%= user.email %> <br/>
+					<% if user.phone.present? %>
+						<i class="far fa-phone fa-fw mr-1"></i> <%= user.phone %>
+					<% end %>
+				</p>
+
+			</div>
+		</div>
+	</div>	
+</div>

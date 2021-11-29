@@ -6,7 +6,7 @@ ro:
     list_of: Listă de
     edit: Modifică
     view: Vezi
-    delete: Șterge
+    delete: Elimină
     show: Vizualizare
     back: Înapoi
     add: Adaugă
@@ -14,10 +14,71 @@ ro:
     previous: Anterior
     current: Curentă
     next: Următor
+    are_you_sure_delete: Ești sigur că dorești să ștergi acest element?
+    none: Niciunul
+    dashboard: acasă
+    successfully_created: creat cu succes
+    successfully_updated: actualizat cu succes
+    successfully_destroyed: eliminat cu succes
+    alert: Atenție
+    notice: Informare
+    sign_in: Autentifică-te
+    sign_out: Ieși din cont
+    total: total
+    profile: profil
+    ok: în regulă
+    spiridoni:
+      one: spiridon
+      few: spiridoni
+      other: de spiridoni
     
   activerecord:
     models:
+      purchase:
+        one: tranzacție
+        other: tranzacții
+      user:
+        one: utilizator
+        other: utilizatori
+      stand:
+        one: stand
+        other: standuri
+      product:
+        one: produs
+        other: produse
     attributes:
+      user:
+        first_name: Prenume
+        last_name: Nume
+        name: Nume
+        department: Departament
+        position: Funcție
+        grade: Clasă
+        email: Adresă de e-mail
+        phone: № de telefon
+        admin: Administrator
+        password: Parolă
+        password_confirmation: Confirmă parola
+        current_password: Parola actuală
+      stand:
+        name: Nume
+        icon: Iconiță
+        operator: Operator
+        user_ids: Utilizatori atribuiți
+      purchase:
+        operator: Casier
+        id: № tranzacție
+        amount: Cantitate
+        stand: Stand
+        price: Preț
+        products_number: № de produse
+        total_price: Valoare totală
+      product:
+        stand: Stand
+        name: Nume
+        icon: Iconiță
+        price: Preț
+        times_sold: № vânzări
     errors:
       messages:
         record_invalid: Validare nereușită %{errors}
@@ -25,6 +86,131 @@ ro:
           has_one: Nu se poate șterge elementul deoarece există un %{record} dependent de acesta.
           has_many: Nu se poate șterge elementul deoarece există unul sau mai multe %{record} dependente de acesta.
   hello: "Hello world"
+
+  home:
+    search:
+      search: căutare
+      youve_searched_for: "Căutare după: „%{term}”"
+      no_results_message: "Căutarea după termenul „%{term}” nu a găsit niciun rezultat. Asigură-te că ai scris corect termenul de căutare sau încearcă să folosești un termen mai puțin specific."
+    profile:
+      edit_profile: modificare profil
+      user_information: Informații de profil
+      contact_information: Informații de contact
+      password: Schimbă-ți parola
+      dont_complete_no_change_password: Nu completa dacă nu dorești să-ți schimbi parola.
+      verify_changes: Autorizează modificările
+      we_need_current_password: Avem nevoie de parola ta actuală pentru a-ți autentifica modificările.
+      edit_details: Modifică detaliile profilului
+      change_position_message: Pentru a-ți modifica încadrarea, te rugăm să contactezi un administrator.
+      stands_operated: 
+        zero: Standuri operate
+        one: Stand operat
+        few: Standuri operate
+        other: De standuri operate
+      purchases_operated: 
+        zero: Tranzacții încheiate
+        one: Tranzacție încheiată
+        few: Tranzacții încheiate
+        other: De tranzacții încheiate
+      stands_associated:
+        zero: Standuri la care participi
+        one: Stand la care participi
+        few: Standuri la care participi
+        other: De standuri la care participi
+    about:
+      about: Despre aplicație
+
+  stands:
+    show: 
+      new_purchase_at_stand: Tranzacție nouă la acest stand
+      new_product_at_stand: Produs nou în acest stand
+      number_products_sold: № de produse vândute
+      value_products_sold: Valoarea produselor vândute
+      percent_of_sales_by_num: Procent din vânzări (după număr)
+      percent_of_sales_by_val: Procent din vânzări (după valoare)
+      best_sold_product: Cel mai bine-vândut produs
+      worst_sold_product: Cel mai slab-vândut produs
+
+  products:
+    show:
+      add_another_product: Adaugă încă un produs
+      percent_of_sales_by_num: Procent din vânzări (după număr)
+      percent_of_sales_by_val: Procent din vânzări (după valoare)
+      total_sales: Vânzări totale
+      number_sales: № de vânzări
+    index:
+      times_sold: № vânzări
+
+  purchases:
+    index:
+      register_new_purchase: Înregistrare tranzacție
+    new:
+      register_new_purchase: Înregistrează o tranzacție nouă
+
+  user_lists:
+    form:
+      phone_requirement: format 07xxxxxxxx
+      pass_requirement: minim 6 caractere
+
+  pages:
+    login:
+      login: Autentificare
+      title: Autentifică-te
+      subtitle: Te rugăm să completezi formularul cu datele de autentificare primite pentru a te conecta la aplicație.
+      remember_me: Ține-mă minte
+      forgot_password: Am uitat parola
+      forgot_password_description: Pentru a-ți reseta parola, te rugăm să contactezi un administrator.
+      sign_up: Creează-ți un cont
+      sign_up_description: Pentru a-ți crea un cont, te rugăm să contactezi un administrator.
+
+  departments:
+    logistics: logistică
+    communication: communicare & marketing
+    hr: resurse umane
+    finance: financiar
+    design: design grafic
+    photography: fotografie
+
+  positions:
+    team_member: membru de echipă
+    co_ordinator: coordonator
+    project_manager: manager de proiect
+    special_member: membru special
+
+  grades:
+    grade_9a: 9 α
+    grade_9o: 9 ω
+    grade_10a: 10 α
+    grade_10d: 10 δ
+    grade_10o: 10 ω
+    grade_11: 11
+    grade_12: 12
+    with_prefix:
+      grade_9a: clasa 9 α
+      grade_9o: clasa 9 ω
+      grade_10a: clasa 10 α
+      grade_10d: clasa 10 δ
+      grade_10o: clasa 10 ω
+      grade_11: clasa a 11-a
+      grade_12: clasa a 12-a
+
+  metrics:
+    total_purchases: valoare tranzacții
+    purchases_today: 
+      zero: nicio tranzacție azi
+      one: nouă tranzacție azi
+      few: noi tranzacții azi
+      other: de noi tranzacții azi
+    users: utilizatori
+    users_today:
+      zero: niciun utilizator nou azi
+      one: utilizator nou azi
+      few: utilizatori noi azi
+      other: de utilizatori noi azi
+
+  alerts:
+    unavailable_language: Limba aleasă nu este disponibilă.
+    unavailable_theme: Tema aleasă nu este disponibilă.
 
   number:
     format:

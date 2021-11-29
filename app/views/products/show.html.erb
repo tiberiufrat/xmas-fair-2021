@@ -1,0 +1,128 @@
+<div class="header bg-<%= current_user.preferences['theme'] || 'primary' %> pb-6">
+  <div class="container-fluid">
+    <div class="header-body">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2 text-white d-inline-block mb-0"><%= t('activerecord.models.product.other').titleize %></h6>
+          <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+            <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+              <li class="breadcrumb-item">
+                <%= link_to '<i class="far fa-home"></i>'.html_safe, root_path %>
+              </li>
+              <li class="breadcrumb-item">
+                <%= link_to t('activerecord.models.product.other').titleize, products_path %>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page"><%= t 'general.new' %> <%= t('activerecord.models.product.one') %></li>
+            </ol>
+          </nav>
+        </div>
+        <div class="col-lg-6 col-5 text-right">
+          
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt--6">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="mb-0"><%= @product.name_with_icon %></h4>
+    </div>
+    <div class="card-body">
+      <dl class="row">
+        <dt class="col-sm-3"><%= t 'activerecord.attributes.product.price' %>:</dt>
+        <dd class="col-sm-9"><%= @product.price %> <span class="text-muted small"><%= t('general.spiridoni', count: @product.price) %></span></dd>
+        <dt class="col-sm-3"><%= t 'activerecord.attributes.product.stand' %>:</dt>
+        <dd class="col-sm-9"><%= link_to @product.stand.name_with_icon, @product.stand, class: 'badge badge-default' %></dd>
+      </dl>
+
+      <!-- Statistics -->
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="card card-stats">
+            <!-- Card body -->
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0"><%= t '.number_sales' %></h5>
+                  <span class="h2 font-weight-bold mb-0"><%= @product.times_sold %></span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
+                    <i class="far fa-hand-holding-usd"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="card card-stats">
+            <!-- Card body -->
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0"><%= t '.total_sales' %></h5>
+                  <span class="h2 font-weight-bold mb-0"><%= @product.total_sales %> <span class="small text-muted"><%= t('general.spiridoni', count: @product.total_sales) %></span></span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-gradient-success text-white rounded-circle shadow">
+                    <i class="far fa-coins"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="card card-stats">
+            <!-- Card body -->
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0"><%= t '.percent_of_sales_by_num' %></h5>
+                  <span class="h2 font-weight-bold mb-0"><%= (@product.times_sold.to_f / Product.total_number_sales * 100).round(1) %>%</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
+                    <i class="far fa-percentage"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="card card-stats">
+            <!-- Card body -->
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0"><%= t '.percent_of_sales_by_val' %></h5>
+                  <span class="h2 font-weight-bold mb-0"><%= (@product.total_sales.to_f / Product.total_value_sales * 100).round(1) %>%</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-gradient-success text-white rounded-circle shadow">
+                    <i class="far fa-percentage"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <%= link_to icon('far fa-arrow-left', t('general.back')), products_path, class: 'btn btn-icon icon-left btn-secondary d-mobile-none mb-2' %>
+  <%= link_to icon('far fa-plus-circle', t('.add_another_product')), new_product_path, class: 'btn btn-icon icon-left btn-success mb-2' %>
+  <%= link_to icon('far fa-edit', t('general.edit')), edit_product_path(@product), class: 'btn btn btn-icon icon-left btn-warning mb-2' %>
+  <%= link_to icon('far fa-trash', t('general.delete')), @product, class: "btn btn btn-icon icon-left btn-danger mb-2", data: { confirm: t('general.are_you_sure_delete'), remote: true }, method: :delete %>
+</div>
+
+<% content_for(:page_title, t('general.show') + " Product") %>

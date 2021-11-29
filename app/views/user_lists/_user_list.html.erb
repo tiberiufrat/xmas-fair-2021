@@ -1,0 +1,12 @@
+<%= user.name %>
+<a	
+	href="javascript:;" 
+	class="text-reset text-decoration-none"
+	style="cursor: help;"
+	data-toggle="popover"
+	title="<i class='far fa-user mr-1'></i> <%= user.name %>" 
+	data-html="true"
+	data-content='<strong><%= t("positions.#{user.position}").capitalize %></strong><%= ", " + t("departments.#{user.department}").capitalize if user.department.present? %><br/><%= t("grades.with_prefix.#{user.grade}").capitalize %>'
+>
+	<i class="far fa-info-circle"></i>
+</a>
