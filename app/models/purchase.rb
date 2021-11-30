@@ -21,7 +21,7 @@
 class Purchase < ApplicationRecord
   belongs_to :operator, class_name: :User, foreign_key: :operator_id
   belongs_to :stand
-  has_many :purchased_products, inverse_of: :purchase
+  has_many :purchased_products, inverse_of: :purchase, dependent: :destroy
   has_many :products, through: :purchased_products
 
   accepts_nested_attributes_for :purchased_products, allow_destroy: true, reject_if: :all_blank

@@ -64,7 +64,7 @@
                   <td class="table-actions">
                     <%= link_to '<i class="far fa-eye"></i>'.html_safe, product, class: "table-action", data: { toggle: 'tooltip', 'original-title': t('general.view') } %>
                     <%= link_to '<i class="far fa-user-edit"></i>'.html_safe, edit_product_path(product), class: "table-action", data: { toggle: 'tooltip', 'original-title': t('general.edit') } %>
-                    <%= link_to '<i class="far fa-trash"></i>'.html_safe, product, class: "table-action table-action-delete", data: { toggle: 'tooltip', 'original-title': t('general.delete'), confirm: t('general.are_you_sure_delete'), remote: true }, method: :delete %>
+                    <%= link_to('<i class="far fa-trash"></i>'.html_safe, product, class: "table-action table-action-delete", data: { toggle: 'tooltip', 'original-title': t('general.delete'), confirm: t('general.are_you_sure_delete'), remote: true }, method: :delete) if current_user.admin? %>
                   </td>
                 </tr>
               <% end %>

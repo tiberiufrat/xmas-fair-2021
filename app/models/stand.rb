@@ -19,8 +19,8 @@
 #
 class Stand < ApplicationRecord
   belongs_to :operator, class_name: :User, foreign_key: :operator_id
-  has_many :purchases
-  has_many :products
+  has_many :purchases, dependent: :destroy
+  has_many :products, dependent: :destroy
   has_and_belongs_to_many :users
 
   include Iconed

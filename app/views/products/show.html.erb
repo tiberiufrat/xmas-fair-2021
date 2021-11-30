@@ -122,7 +122,7 @@
   <%= link_to icon('far fa-arrow-left', t('general.back')), products_path, class: 'btn btn-icon icon-left btn-secondary d-mobile-none mb-2' %>
   <%= link_to icon('far fa-plus-circle', t('.add_another_product')), new_product_path, class: 'btn btn-icon icon-left btn-success mb-2' %>
   <%= link_to icon('far fa-edit', t('general.edit')), edit_product_path(@product), class: 'btn btn btn-icon icon-left btn-warning mb-2' %>
-  <%= link_to icon('far fa-trash', t('general.delete')), @product, class: "btn btn btn-icon icon-left btn-danger mb-2", data: { confirm: t('general.are_you_sure_delete'), remote: true }, method: :delete %>
+  <%= link_to(icon('far fa-trash', t('general.delete')), @product, class: "btn btn btn-icon icon-left btn-danger mb-2", data: { confirm: t('general.are_you_sure_delete'), remote: true }, method: :delete) if current_user.admin? %>
 </div>
 
 <% content_for(:page_title, t('general.show') + " Product") %>

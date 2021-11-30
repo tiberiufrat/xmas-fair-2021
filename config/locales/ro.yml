@@ -88,6 +88,8 @@ ro:
   hello: "Hello world"
 
   home:
+    index:
+      products_sold: Produse vândute
     search:
       search: căutare
       youve_searched_for: "Căutare după: „%{term}”"
@@ -207,6 +209,11 @@ ro:
       one: utilizator nou azi
       few: utilizatori noi azi
       other: de utilizatori noi azi
+    products_today:
+      zero: niciun produs vândut azi
+      one: produs vândut azi
+      few: produse vândute azi
+      other: de produse vândute azi
 
   alerts:
     unavailable_language: Limba aleasă nu este disponibilă.

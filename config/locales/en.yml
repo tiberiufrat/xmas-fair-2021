@@ -81,6 +81,7 @@ en:
   hello: "Hello world"
 
   home:
+    index: Products sold
     search:
       search: search
       youve_searched_for: "You have searched for: “%{term}”"
@@ -198,6 +199,10 @@ en:
       zero: no new users today
       one: new user today
       other: new users today
+    products_today:
+      zero: no products sold today
+      one: product sold today
+      other: products sold today
 
   alerts:
     unavailable_language: The chosen language isn't available.

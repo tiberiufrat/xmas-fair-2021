@@ -1,7 +1,7 @@
 class UserListsController < ApplicationController
   before_action :authenticate_user!
-  before_action :authorize_admin!, except: %i[index show change_language change_theme]
-  before_action :set_user, only: %i[show edit update destroy]
+  before_action :authorize_admin!, only: %i[new create edit update destroy]
+  before_action :set_user, only: %i[edit update destroy]
 
   def index
     @search = User.reverse_chronologically.ransack(params[:q])
@@ -11,8 +11,6 @@ class UserListsController < ApplicationController
       format.csv { render csv: @search.result }
     end
   end
-
-  def show; end
 
   def new
     @user = User.new
@@ -25,7 +23,7 @@ class UserListsController < ApplicationController
     @user.save!
 
     respond_to do |format|
-      format.html { redirect_to user_lists_path, notice: 'User was successfully created.' }
+      format.html { redirect_to user_lists_path, notice: "#{t('activerecord.models.user.one').capitalize} #{t 'general.successfully_created'}" }
       format.json { render :show, status: :created }
     end
   end
@@ -33,7 +31,7 @@ class UserListsController < ApplicationController
   def update
     @user.update!(usable_params)
     respond_to do |format|
-      format.html { redirect_to user_lists_path, notice: 'User was successfully updated.' }
+      format.html { redirect_to user_lists_path, notice: "#{t('activerecord.models.user.one').capitalize} #{t 'general.successfully_updated'}" }
       format.json { render :show }
     end
   end
@@ -41,7 +39,7 @@ class UserListsController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to user_lists_path, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to user_lists_path, notice: "#{t('activerecord.models.user.one').capitalize} #{t 'general.successfully_destroyed'}" }
       format.json { head :no_content }
     end
   end

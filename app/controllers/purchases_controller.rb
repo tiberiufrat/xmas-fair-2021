@@ -1,7 +1,7 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!
-  before_action :authorize_admin!, only: %i[ edit update destroy ]
-  before_action :set_purchase, only: %i[ show edit update destroy ]
+  before_action :authorize_admin!, only: %i[edit update destroy]
+  before_action :set_purchase, only: %i[show edit update destroy]
 
   def index
     @search = Purchase.reverse_chronologically.ransack(params[:q])
@@ -21,8 +21,7 @@ class PurchasesController < ApplicationController
     @purchase.stand_id = params[:stand] if params.key?(:stand)
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @purchase = Purchase.new(purchase_params)
@@ -31,7 +30,7 @@ class PurchasesController < ApplicationController
     @purchase.save!
 
     respond_to do |format|
-      format.html { redirect_to @purchase, notice: 'Purchase was successfully created.' }
+      format.html { redirect_to @purchase, notice: "#{t('activerecord.models.purchase.one').capitalize} #{t 'general.successfully_created'}" }
       format.json { render :show, status: :created }
     end
   end
@@ -39,7 +38,7 @@ class PurchasesController < ApplicationController
   def update
     @purchase.update!(purchase_params)
     respond_to do |format|
-      format.html { redirect_to @purchase, notice: 'Purchase was successfully updated.' }
+      format.html { redirect_to @purchase, notice: "#{t('activerecord.models.purchase.one').capitalize} #{t 'general.successfully_updated'}" }
       format.json { render :show }
     end
   end
@@ -47,17 +46,18 @@ class PurchasesController < ApplicationController
   def destroy
     @purchase.destroy
     respond_to do |format|
-      format.html { redirect_to purchases_url, notice: 'Purchase was successfully destroyed.' }
+      format.html { redirect_to purchases_url, notice: "#{t('activerecord.models.purchase.one').capitalize} #{t 'general.successfully_destroyed'}" }
       format.json { head :no_content }
     end
   end
 
   private
-    def set_purchase
-      @purchase = Purchase.find(params[:id])
-    end
 
-    def purchase_params
-      params.require(:purchase).permit(:amount, :operator_id, :stand_id, :product_ids => [], purchased_products_attributes: [:id, :product_id, :amount, :_destroy])
-    end
+  def set_purchase
+    @purchase = Purchase.find(params[:id])
+  end
+
+  def purchase_params
+    params.require(:purchase).permit(:amount, :operator_id, :stand_id, product_ids: [], purchased_products_attributes: [:id, :product_id, :amount, :_destroy])
+  end
 end

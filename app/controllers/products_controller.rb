@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_product, only: %i[ show edit update destroy ]
+  before_action :authorize_admin!, only: :destroy
+  before_action :set_product, only: %i[show edit update destroy]
 
   def index
     @search = Product.reverse_chronologically.ransack(params[:q])
@@ -20,8 +21,7 @@ class ProductsController < ApplicationController
     @product.stand_id = params[:stand] if params.key?(:stand)
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @product = Product.new(product_params)
@@ -50,11 +50,12 @@ class ProductsController < ApplicationController
   end
 
   private
-    def set_product
-      @product = Product.find(params[:id])
-    end
 
-    def product_params
-      params.require(:product).permit(:name, :icon, :price, :stand_id)
-    end
+  def set_product
+    @product = Product.find(params[:id])
+  end
+
+  def product_params
+    params.require(:product).permit(:name, :icon, :price, :stand_id)
+  end
 end

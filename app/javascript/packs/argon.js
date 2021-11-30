@@ -29,7 +29,7 @@ var Layout = (function() {
     function pinSidenav() {
         $('.sidenav-toggler').addClass('active');
         $('.sidenav-toggler').data('action', 'sidenav-unpin');
-        $('body').removeClass('g-sidenav-hidden').addClass('g-sidenav-show g-sidenav-pinned');
+        $('body').addClass('g-sidenav-show g-sidenav-pinned').removeClass('g-sidenav-hidden');
         $('body').append('<div class="backdrop d-xl-none" data-action="sidenav-unpin" data-target='+$('#sidenav-main').data('target')+' />');
 
         // Store the sidenav state in a cookie session

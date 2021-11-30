@@ -1,6 +1,7 @@
 class StandsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_stand, only: %i[ show edit update destroy ]
+  before_action :authorize_admin!, only: :destroy
+  before_action :set_stand, only: %i[show edit update destroy]
 
   def index
     @search = Stand.reverse_chronologically.ransack(params[:q])
@@ -19,8 +20,7 @@ class StandsController < ApplicationController
     @stand = Stand.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @stand = Stand.new(stand_params)
