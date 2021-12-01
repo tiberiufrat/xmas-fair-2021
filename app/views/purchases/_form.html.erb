@@ -19,7 +19,7 @@
 
   <div class="form-group">
       <%= form.label :stand_id, t('activerecord.models.stand.one').capitalize, class: 'form-control-label' %>
-      <%= form.collection_select(:stand_id, Stand.all, :id, :icon_and_name, { selected: Purchase.where(operator_id: current_user.id).last.stand.id }, { id: 'select-stand', class: 'form-control select-with-icons', data: { controller: 'select' } }) %>
+      <%= form.collection_select(:stand_id, Stand.all, :id, :icon_and_name, { selected: (Purchase.where(operator_id: current_user.id).any? ? Purchase.where(operator_id: current_user.id).last.stand.id : Stand.first) }, { id: 'select-stand', class: 'form-control select-with-icons', data: { controller: 'select' } }) %>
   </div>
 <div class="card-footer pl-0 pb-0">
   <%= form.submit class: 'btn btn-success' %>
