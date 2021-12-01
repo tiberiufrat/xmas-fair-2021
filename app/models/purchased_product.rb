@@ -19,6 +19,7 @@ class PurchasedProduct < ApplicationRecord
   belongs_to :purchase
 
   def total_price
+    return 0 if product.nil?
     product.price * amount
   end
 end

@@ -124,6 +124,9 @@ en:
       percent_of_sales_by_val: Percentage of all sales (by value)
       best_sold_product: Best sold product
       worst_sold_product: Worst sold product
+      no_products_message: There are no products assigned to this booth. You may add a new product by pressing on the corresponding button below.
+      no_purchases_message: There are no purchases completed at this booth. You may complete a new purchase by pressing on the corresponding button below.
+      no_statistics_message: There are no products assigned to this booth. In order to see relevant statistics for this booth, please add a few products.
 
   products:
     show:

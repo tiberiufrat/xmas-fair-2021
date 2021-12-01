@@ -38,8 +38,10 @@ class Purchase < ApplicationRecord
 
   def price
     price = 0
-    purchased_products.each do |pp|
-      price += pp.total_price
+    if purchased_products.any?
+      purchased_products.each do |pp|
+        price += pp.total_price
+      end
     end
     price
   end

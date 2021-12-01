@@ -132,6 +132,9 @@ ro:
       percent_of_sales_by_val: Procent din vânzări (după valoare)
       best_sold_product: Cel mai bine-vândut produs
       worst_sold_product: Cel mai slab-vândut produs
+      no_products_message: Nu există niciun produs atribuit acestui stand. Puteți adăuga un nou produs apăsând pe butonul corespunzător din josul paginii.
+      no_purchases_message: Nu există nicio tranzacție efectuată la acest stand. Puteți efectua o nouă tranzacție apăsând pe butonul corespunzător din josul paginii.
+      no_statistics_message: Nu există niciun produs atribuit acestui stand. Pentru a vedea statisticile, vă rugăm să adăugați câteva produse.
 
   products:
     show:
