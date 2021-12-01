@@ -12,9 +12,7 @@ class StandsController < ApplicationController
     end
   end
 
-  def show
-    fresh_when etag: @stand
-  end
+  def show; end
 
   def new
     @stand = Stand.new

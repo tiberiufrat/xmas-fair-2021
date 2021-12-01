@@ -12,9 +12,7 @@ class ProductsController < ApplicationController
     end
   end
 
-  def show
-    fresh_when etag: @product
-  end
+  def show; end
 
   def new
     @product = Product.new

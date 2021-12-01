@@ -12,9 +12,7 @@ class PurchasesController < ApplicationController
     end
   end
 
-  def show
-    fresh_when etag: @purchase
-  end
+  def show; end
 
   def new
     @purchase = Purchase.new
