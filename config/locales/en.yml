@@ -28,7 +28,9 @@ en:
     profile: profile
     ok: ok
     spiridoni:
+      zero: spiridons
       one: spiridon
+      few: spiridons
       other: spiridons
     
   activerecord:

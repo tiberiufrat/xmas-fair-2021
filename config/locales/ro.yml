@@ -28,6 +28,7 @@ ro:
     profile: profil
     ok: în regulă
     spiridoni:
+      zero: spiridoni
       one: spiridon
       few: spiridoni
       other: de spiridoni
