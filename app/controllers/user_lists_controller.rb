@@ -7,7 +7,7 @@ class UserListsController < ApplicationController
     @search = User.reverse_chronologically.ransack(params[:q])
 
     respond_to do |format|
-      format.any(:html, :json) { @users = set_page_and_extract_portion_from @search.result }
+      format.any(:html, :json) { @users = @search.result }
       format.csv { render csv: @search.result }
     end
   end

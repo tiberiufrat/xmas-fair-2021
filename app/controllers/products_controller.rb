@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
     @search = Product.reverse_chronologically.ransack(params[:q])
 
     respond_to do |format|
-      format.any(:html, :json) { @products = set_page_and_extract_portion_from @search.result }
+      format.any(:html, :json) { @products = @search.result }
       format.csv { render csv: @search.result }
     end
   end
