@@ -176,12 +176,14 @@ ro:
     finance: financiar
     design: design grafic
     photography: fotografie
+    no_department: neafiliat
 
   positions:
     team_member: membru de echipă
     co_ordinator: coordonator
     project_manager: manager de proiect
     special_member: membru special
+    no_position: neatribuit
 
   grades:
     grade_9a: 9 α

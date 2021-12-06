@@ -169,12 +169,14 @@ en:
     finance: finance
     design: graphic design
     photography: photography
+    no_department: unaffiliated
 
   positions:
     team_member: team member
     co_ordinator: "co-ordinator"
     project_manager: project manager
     special_member: special member
+    no_position: unassigned
 
   grades:
     grade_9a: 9 α

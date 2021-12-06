@@ -71,13 +71,15 @@ class User < ApplicationRecord
     finance:        2,
     hr:             3,
     design:         4,
-    photography:    5
+    photography:    5,
+    no_department:  6
   }
 
   enum position: {
     team_member:      0,
     co_ordinator:     1,
     project_manager:  2,
-    special_member:   3
+    special_member:   3,
+    no_position:      0
   }
 end
