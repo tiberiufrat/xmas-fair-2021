@@ -35,6 +35,7 @@ en:
     'yes': "Yes"
     'no': "No"
     greeting: Welcome, %{name}
+    datetime: Date & time
     
   activerecord:
     models:

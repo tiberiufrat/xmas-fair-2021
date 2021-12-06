@@ -35,6 +35,7 @@ ro:
     'yes': Da
     'no': Nu
     greeting: Bună ziua, %{name}
+    datetime: Data și ora
     
   activerecord:
     models:
@@ -231,6 +232,9 @@ ro:
   number:
     format:
       precision: 2
+  time:
+    formats:
+      long: "%d.%m.%Y, %H<sup><u>%M</u></sup>"
   date:
     abbr_day_names:
     - dum
