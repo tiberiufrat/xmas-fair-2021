@@ -33,7 +33,7 @@ class Purchase < ApplicationRecord
   end
 
   def self.total_sales
-    Purchase.all.map(&:price).reduce(:+)
+    Purchase.any? ? Purchase.all.map(&:price).reduce(:+) : 0
   end
 
   def price
