@@ -39,6 +39,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :trackable
 
   has_many :purchases, foreign_key: :operator_id
+  has_many :spiridon_purchases, foreign_key: :operator_id
   has_many :operated_stands, class_name: :Stand, foreign_key: :operator_id
   has_and_belongs_to_many :stands
   store_accessor :preferences, :theme

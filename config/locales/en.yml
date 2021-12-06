@@ -51,6 +51,9 @@ en:
       product:
         one: product
         other: products
+      spiridon_purchase:
+        one: spiridon purchase
+        other: spiridon purchases
     attributes:
       user:
         first_name: First name
@@ -84,6 +87,14 @@ en:
         icon: Icon
         price: Price
         times_sold: № of sales
+      purchased_product:
+        amount: Amount
+        price: Total price
+      spiridon_purchase:
+        id: Purchase №
+        amount: Amount
+        value: Value
+        operator: Cashier
   hello: "Hello world"
 
   home:
@@ -119,6 +130,10 @@ en:
         other: Booths you take part in
     about:
       about: About this app
+
+  spiridon_purchases:
+    new:
+      register_new_purchase: Register a new purchase
 
   stands:
     show: 
@@ -214,6 +229,11 @@ en:
       zero: no products sold today
       one: product sold today
       other: products sold today
+    spiridons_sold: spiridons sold
+    spiridons_today:
+      zero: no spiridons sold today
+      one: spiridon sold today
+      other: spiridons sold today
 
   alerts:
     unavailable_language: The chosen language isn't available.

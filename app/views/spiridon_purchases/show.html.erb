@@ -1,0 +1,51 @@
+<div class="header bg-<%= current_user.preferences['theme'] || 'primary' %> pb-6">
+  <div class="container-fluid">
+    <div class="header-body">
+      <div class="row align-items-center py-4">
+        <div class="col-12">
+          <h6 class="h2 text-white d-inline-block mb-0"><%= t('activerecord.models.spiridon_purchase.other').capitalize %></h6>
+          <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+            <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+              <li class="breadcrumb-item">
+                <%= link_to '<i class="far fa-home"></i>'.html_safe, root_path %>
+              </li>
+              <li class="breadcrumb-item">
+                <%= link_to t('activerecord.models.spiridon_purchase.other').capitalize, spiridon_purchases_path %>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page"><%= t 'general.show' %> <%= t('activerecord.models.spiridon_purchase.one') %></li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt--6">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="mb-0"><i class="far fa-coins mr-1"></i> <%= t('activerecord.models.spiridon_purchase.one').capitalize %> № <%= @spiridon_purchase.id %></h4>
+    </div>
+    <div class="card-body">
+      <dl class="row">
+        <dt class="col-sm-3"><%= t 'activerecord.attributes.spiridon_purchase.amount' %>:</dt>
+        <dd class="col-sm-9">
+          <%= @spiridon_purchase.amount %>
+          <span class="small text-muted"><%= t('general.spiridoni', count: @spiridon_purchase.amount) %></span>
+        </dd>
+        <dt class="col-sm-3"><%= t 'activerecord.attributes.spiridon_purchase.value' %>:</dt>
+        <dd class="col-sm-9"><%= @spiridon_purchase.amount * 5 %> <span class="small text-muted">RON</span></dd>
+        <dt class="col-sm-3"><%= t 'activerecord.attributes.spiridon_purchase.operator' %>:</dt>
+        <dd class="col-sm-9"><%= render 'user_lists/user_list', user: @spiridon_purchase.operator %></dd>
+        <dt class="col-sm-3"><%= t('general.datetime').capitalize %>:</dt>
+        <dd class="col-sm-9"><%= I18n.l(@spiridon_purchase.created_at, format: :long).html_safe %></dd>
+      </dl>
+    </div>
+  </div>
+  <%= link_to icon('far fa-arrow-left', t('general.back')), spiridon_purchases_path, class: 'btn btn-icon icon-left btn-secondary d-mobile-none mb-2' %>
+  <%= link_to(icon('far fa-file-plus', "#{t('general.add')} #{t('activerecord.models.spiridon_purchase.one')}".capitalize), new_spiridon_purchase_path, class: 'btn btn-icon icon-left btn-success mb-2') %>
+  <%= link_to icon('far fa-edit', t('general.edit')), edit_spiridon_purchase_path(@spiridon_purchase), class: 'btn btn btn-icon icon-left btn-warning mb-2' %>
+  <%= link_to icon('far fa-trash', t('general.delete')), @spiridon_purchase, class: "btn btn btn-icon icon-left btn-danger mb-2", data: { confirm: t('general.are_you_sure_delete'), remote: true }, method: :delete %>
+</div>
+
+<% content_for(:page_title, t('general.show') + " Spiridon Purchase") %>

@@ -33,7 +33,7 @@
     <div class="card-body">
       <dl class="row">
         <dt class="col-sm-3"><%= t('activerecord.attributes.purchase.total_price').capitalize %>:</dt>
-        <dd class="col-sm-9"><%= @purchase.price %></dd>
+        <dd class="col-sm-9"><%= @purchase.price %> <span class="small text-muted"><%= t('general.spiridoni', count: @purchase.price) %></span></dd>
         <dt class="col-sm-3"><%= t('activerecord.attributes.purchase.operator').capitalize %>:</dt>
         <dd class="col-sm-9"><%= render 'user_lists/user_list', user: @purchase.operator %></dd>
         <dt class="col-sm-3"><%= t('activerecord.models.stand.one').capitalize %>:</dt>
@@ -84,7 +84,7 @@
     </div>
   </div>
   <%= link_to(icon('far fa-arrow-left', t('general.back')), purchases_path, class: 'btn btn-icon icon-left btn-secondary d-mobile-none mb-2') %>
-  <%= link_to(icon('far fa-file-plus', "#{t('general.new')} #{t('activerecord.models.purchase.one')}".capitalize), new_purchase_path, class: 'btn btn-icon icon-left btn-success mb-2') %>
+  <%= link_to(icon('far fa-file-plus', "#{t('general.add')} #{t('activerecord.models.purchase.one')}".capitalize), new_purchase_path, class: 'btn btn-icon icon-left btn-success mb-2') %>
   <%= link_to(icon('far fa-edit', t('general.edit')), edit_purchase_path(@purchase), class: 'btn btn btn-icon icon-left btn-warning mb-2') if current_user.admin? %>
   <%= link_to(icon('far fa-trash', t('general.delete')), @purchase, class: "btn btn btn-icon icon-left btn-danger mb-2", data: { confirm: t('general.are_you_sure_delete'), remote: true }, method: :delete) if current_user.admin? %>
 </div>

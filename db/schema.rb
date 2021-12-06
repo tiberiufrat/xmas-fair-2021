@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_28_172804) do
+ActiveRecord::Schema.define(version: 2021_12_06_211033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -43,6 +43,14 @@ ActiveRecord::Schema.define(version: 2021_11_28_172804) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["operator_id"], name: "index_purchases_on_operator_id"
     t.index ["stand_id"], name: "index_purchases_on_stand_id"
+  end
+
+  create_table "spiridon_purchases", force: :cascade do |t|
+    t.integer "amount", default: 0, null: false
+    t.bigint "operator_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["operator_id"], name: "index_spiridon_purchases_on_operator_id"
   end
 
   create_table "stands", force: :cascade do |t|
@@ -92,5 +100,6 @@ ActiveRecord::Schema.define(version: 2021_11_28_172804) do
   add_foreign_key "products", "stands"
   add_foreign_key "purchases", "stands"
   add_foreign_key "purchases", "users", column: "operator_id"
+  add_foreign_key "spiridon_purchases", "users", column: "operator_id"
   add_foreign_key "stands", "users", column: "operator_id"
 end

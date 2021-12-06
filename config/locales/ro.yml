@@ -17,9 +17,9 @@ ro:
     are_you_sure_delete: Ești sigur că dorești să ștergi acest element?
     none: Niciunul
     dashboard: acasă
-    successfully_created: creat cu succes
-    successfully_updated: actualizat cu succes
-    successfully_destroyed: eliminat cu succes
+    successfully_created: creat(ă) cu succes
+    successfully_updated: actualizat(ă) cu succes
+    successfully_destroyed: eliminat(ă) cu succes
     alert: Atenție
     notice: Informare
     sign_in: Autentifică-te
@@ -51,6 +51,9 @@ ro:
       product:
         one: produs
         other: produse
+      spiridon_purchase:
+        one: vânzare de spiridoni
+        other: vânzări de spiridoni
     attributes:
       user:
         first_name: Prenume
@@ -84,6 +87,14 @@ ro:
         icon: Iconiță
         price: Preț
         times_sold: № vânzări
+      purchased_product:
+        amount: Cantitate
+        price: Preț total
+      spiridon_purchase:
+        id: № vânzare
+        amount: Cantitate
+        value: Valoare
+        operator: Casier
     errors:
       messages:
         record_invalid: Validare nereușită %{errors}
@@ -126,6 +137,10 @@ ro:
         other: De standuri la care participi
     about:
       about: Despre aplicație
+
+  spiridon_purchases:
+    new:
+      register_new_purchase: Înregistrează o nouă vânzare
 
   stands:
     show: 
@@ -224,6 +239,12 @@ ro:
       one: produs vândut azi
       few: produse vândute azi
       other: de produse vândute azi
+    spiridons_sold: spiridoni vânduți
+    spiridons_today:
+      zero: nicio vânzare azi
+      one: vânzare de spiridoni azi
+      few: vânzări de spiridoni azi
+      other: de vânzări de spiridoni azi
 
   alerts:
     unavailable_language: Limba aleasă nu este disponibilă.

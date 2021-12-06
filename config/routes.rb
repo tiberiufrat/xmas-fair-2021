@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  resources :spiridon_purchases
   resources :products
   match 'user_list/:id' => 'user_lists#destroy', :via => :delete, :as => :admin_destroy_user
   resources :purchases

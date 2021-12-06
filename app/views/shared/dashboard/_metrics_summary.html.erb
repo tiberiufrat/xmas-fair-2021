@@ -31,22 +31,25 @@
       <div class="card-body">
         <div class="row">
           <div class="col">
-            <h5 class="card-title text-uppercase text-muted mb-0"><%= t('metrics.users') %></h5>
-            <span class="h2 font-weight-bold mb-0"><%= User.all.size %></span>
+            <h5 class="card-title text-uppercase text-muted mb-0"><%= t('metrics.spiridons_sold') %></h5>
+            <span class="h2 font-weight-bold mb-0">
+              <%= SpiridonPurchase.pluck(:amount).sum %>
+              <span class="small text-muted">(<%= SpiridonPurchase.pluck(:amount).sum * 5 %> RON)</span>
+            </span>
           </div>
           <div class="col-auto">
             <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
-              <i class="far fa-users"></i>
+              <i class="far fa-coins"></i>
             </div>
           </div>
         </div>
         <p class="mt-3 mb-0 text-sm">
-          <% if User.today.any? %>
-            <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> <%= User.today.size %></span>
-            <span class="text-nowrap"><%= t('metrics.users_today', count: User.today.size) %></span>
+          <% if SpiridonPurchase.today.any? %>
+            <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> <%= SpiridonPurchase.today.size %></span>
+            <span class="text-nowrap"><%= t('metrics.spiridons_today', count: SpiridonPurchase.today.size) %></span>
           <% else %>
             <span class="text-warning mr-2"><i class="far fa-exclamation"></i></span>
-            <span class="text-nowrap"><%= t('metrics.users_today', count: User.today.size) %></span>
+            <span class="text-nowrap"><%= t('metrics.spiridons_today', count: SpiridonPurchase.today.size) %></span>
           <% end %>
         </p>
       </div>

@@ -67,6 +67,12 @@
                 <span class="nav-link-text"><%= t('activerecord.models.product.other').capitalize %></span>
               <% end %>
             </li>
+            <li class="nav-item">
+              <%= link_to spiridon_purchases_path, class: "nav-link #{"active" if current_page?(controller: 'spiridon_purchases', action: 'index')}" do %>
+                <i class="far fa-coins text-dark"></i>
+                <span class="nav-link-text"><%= t('general.spiridoni', count: 10).capitalize %></span>
+              <% end %>
+            </li>
             <%# <li class="nav-item">
               <a class="nav-link" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-examples">
                 <i class="ni ni-ungroup text-orange"></i>
