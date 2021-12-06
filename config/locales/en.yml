@@ -32,6 +32,8 @@ en:
       one: spiridon
       few: spiridons
       other: spiridons
+    yes: "Yes"
+    no: "No"
     
   activerecord:
     models:

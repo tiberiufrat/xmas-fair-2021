@@ -37,11 +37,11 @@
   <div class="row">
     <div class="form-group col-md-6">
       <%= form.label :department, t('activerecord.attributes.user.department'), class: 'form-control-label' %>
-      <%= form.select :department, [['Logistics', 0], ['Marketing & Communication', 1], ['Human resources', 2], ['Finance', 3], ['Graphic design', 4], ['Photography', 5]], { prompt: "#{t('activerecord.attributes.user.department')}…" }, { class: 'form-control', data: { controller: 'select' }} %>
+      <%= form.select :department, [[t('departments.no_department').capitalize, 6], [t('departments.logistics').capitalize, 0], [t('departments.communication').capitalize, 1], [t('departments.hr').capitalize, 2], [t('departments.finance').capitalize, 3], [t('departments.design').capitalize, 4], [t('departments.photography').capitalize, 5]], { selected: 6 }, { class: 'form-control', data: { controller: 'select' }} %>
     </div>
     <div class="form-group col-md-6">
       <%= form.label :position, t('activerecord.attributes.user.position'), class: 'form-control-label' %>
-      <%= form.select :position, [['Team member', 0], ['Co-ordinator', 1], ['Project manager', 2], ['Special member', 3]], { prompt: "#{t('activerecord.attributes.user.position')}…" }, { class: 'form-control', required: true, data: { controller: 'select' }} %>
+      <%= form.select :position, [[t('positions.no_position').capitalize, 4], [t('positions.team_member').capitalize, 0], [t('positions.co_ordinator').capitalize, 1], [t('positions.project_manager').capitalize, 2], [t('positions.special_member').capitalize, 3]], { selected: 4 }, { class: 'form-control', required: true, data: { controller: 'select' }} %>
     </div>
   </div>
   
@@ -52,7 +52,7 @@
     </div>
     <div class="form-group col-md-6">
       <%= form.label :admin, t('activerecord.attributes.user.admin'), class: 'form-control-label' %>
-      <%= form.select :admin, [['No', false], ['Yes', true]], {}, { class: 'form-control', required: true, data: { controller: 'select' }} %>
+      <%= form.select :admin, [[t('general.no'), false], [t('general.yes'), true]], { selected: false }, { class: 'form-control', required: true, data: { controller: 'select' }} %>
     </div>
   </div>
 

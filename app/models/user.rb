@@ -80,6 +80,6 @@ class User < ApplicationRecord
     co_ordinator:     1,
     project_manager:  2,
     special_member:   3,
-    no_position:      0
+    no_position:      4
   }
 end
