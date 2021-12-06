@@ -3,8 +3,7 @@
     <div class="header-body">
       <%= render partial: 'shared/header', locals: {
             icon: 'far fa-home-lg',
-            breadcrumb_1: 'Dashboards',
-            breadcrumb_2: 'Default'
+            breadcrumb_1: t('general.dashboard').capitalize,
       } %>
       <%= render 'shared/dashboard/metrics_summary' %>
     </div>
