@@ -32,8 +32,9 @@ en:
       one: spiridon
       few: spiridons
       other: spiridons
-    yes: "Yes"
-    no: "No"
+    'yes': "Yes"
+    'no': "No"
+    greeting: Welcome, %{name}
     
   activerecord:
     models:

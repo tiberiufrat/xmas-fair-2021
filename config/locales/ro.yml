@@ -32,8 +32,9 @@ ro:
       one: spiridon
       few: spiridoni
       other: de spiridoni
-    yes: Da
-    no: Nu
+    'yes': Da
+    'no': Nu
+    greeting: Bună ziua, %{name}
     
   activerecord:
     models:
