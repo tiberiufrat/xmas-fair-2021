@@ -2,7 +2,7 @@
   <%= f.hidden_field :_destroy %>
   <div class="form-group col-12 col-md-6">
     <%= f.label :product_id, t('activerecord.models.product.one').capitalize, class: 'form-control-label' %>
-    <%= f.collection_select(:product_id, Product.all, :id, :icon_and_name, {  }, { class: 'form-control select-with-icons', data: { controller: 'select' } }) %>
+    <%= f.collection_select(:product_id, Product.all, :id, :icon_and_name, { selected: (Purchase.where(operator_id: current_user.id).any? ? Purchase.where(operator_id: current_user.id).last.products.first.id : Product.first.id) }, { class: 'form-control select-with-icons', data: { controller: 'select' } }) %>
   </div>
 
   <div class="form-group col-12 col-md-6">
