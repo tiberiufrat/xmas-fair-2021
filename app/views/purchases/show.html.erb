@@ -28,7 +28,19 @@
 <div class="container-fluid mt--6">
   <div class="card">
     <div class="card-header">
-      <h3 class="mb-0"><i class="far fa-cash-register mr-1"></i> <%= t('activerecord.models.purchase.one').capitalize %> № <%= @purchase.id %></h4>
+      <div class="row">
+        <div class="col-6">
+          <h3 class="mb-0"><i class="far fa-cash-register mr-1"></i> <%= t('activerecord.models.purchase.one').capitalize %> № <%= @purchase.id %></h3>
+        </div>
+        <div class="col-6 text-right">
+          <%= link_to new_purchase_path, class: "btn btn-sm btn-#{ current_user.preferences['theme'] || 'primary'} btn-round btn-icon", data: { toggle: :tooltip, 'original-title': "#{ t 'general.add'} #{ t 'activerecord.models.purchase.one' }" } do %>
+            <span class="btn-inner--icon">
+              <i class="far fa-cash-register" style="top: 0px"></i>
+            </span>
+            <span class="btn-inner--text"><%= t 'general.add' %> <%= t 'activerecord.models.purchase.one' %></span>
+          <% end %>
+        </div>
+      </div>
     </div>
     <div class="card-body">
       <dl class="row">
