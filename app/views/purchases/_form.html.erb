@@ -5,23 +5,36 @@
   <% end %>
   <%= link_to_add_fields icon('far fa-cart-plus', "#{t'general.add'} #{t 'activerecord.models.product.one'}"), form, :purchased_products, class: "btn btn-#{ user_signed_in? ? current_user.theme || 'primary' : 'primary' } mb-3" %>
 
-  <% if current_user.admin? %>
-    <div class="form-group">
-      <%= form.label :operator_id, t('activerecord.attributes.purchase.operator'), class: 'form-control-label' %>
-      <%= form.collection_select(:operator_id, User.all, :id, :name, { selected: current_user.id }, { class: 'form-control', data: { controller: 'select' } }) %>
-    </div>
-  <% else %>
-    <div class="form-group">
-      <label class="form-control-label" for="operator"><%= t('activerecord.attributes.purchase.operator') %></label>
-      <input class="form-control" type="text" name="operator" disabled value="<%= current_user.name %>">
-    </div>
-  <% end %>
+  <div class="row">
+    <% if current_user.admin? %>
+      <div class="form-group col-md-6">
+        <%= form.label :operator_id, t('activerecord.attributes.purchase.operator'), class: 'form-control-label' %>
+        <%= form.collection_select(:operator_id, User.all, :id, :name, { selected: current_user.id }, { class: 'form-control', data: { controller: 'select' } }) %>
+      </div>
+    <% else %>
+      <div class="form-group col-md-6">
+        <label class="form-control-label" for="operator"><%= t('activerecord.attributes.purchase.operator') %></label>
+        <input class="form-control" type="text" name="operator" disabled value="<%= current_user.name %>">
+      </div>
+    <% end %>
 
-  <div class="form-group">
+    <div class="form-group col-md-6">
       <%= form.label :stand_id, t('activerecord.models.stand.one').capitalize, class: 'form-control-label' %>
       <%= form.collection_select(:stand_id, Stand.all, :id, :icon_and_name, { selected: (Purchase.where(operator_id: current_user.id).any? ? Purchase.where(operator_id: current_user.id).last.stand.id : Stand.first) }, { id: 'select-stand', class: 'form-control select-with-icons', data: { controller: 'select' } }) %>
+    </div>
   </div>
+
 <div class="card-footer pl-0 pb-0">
   <%= form.submit class: 'btn btn-success' %>
 </div>
 <% end %>
+
+<script>
+  // When Add products is clicked, add event listeners to digits
+  document.querySelector('.add_fields').addEventListener('click', async () => {
+    await new Promise(resolve => setTimeout(resolve, 100))
+    document.querySelectorAll('.value-select').forEach((e) => e.addEventListener('click', () => {
+      document.querySelector('#amount-field').value = e.textContent
+    }))
+  })
+</script>

@@ -8,7 +8,13 @@
   <div class="form-group col-12 col-md-6">
     <%= f.label :amount, t('activerecord.attributes.purchase.amount').capitalize, class: 'form-control-label' %>
     <div class="input-group">
-      <%= f.number_field :amount, class: 'form-control', min: 1 %>
+      <div class="input-group-prepend" id="button-addon3">
+        <button class="btn btn-outline-default value-select" data-value="1" type="button">1</button>
+        <button class="btn btn-outline-default value-select" data-value="2" type="button">2</button>
+        <button class="btn btn-outline-default value-select" data-value="3" type="button">3</button>
+        <button class="btn btn-outline-default value-select d-none d-md-block" data-value="4" type="button">4</button>
+      </div>
+      <%= f.number_field :amount, class: 'form-control', min: 1, id: 'amount-field' %>
       <div class="input-group-append">
         <%= link_to icon('far fa-trash-alt remove_fields'), 'javascript:;', class: "remove_fields btn btn-danger" %>
       </div>

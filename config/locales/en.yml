@@ -134,6 +134,8 @@ en:
   spiridon_purchases:
     new:
       register_new_purchase: Register a new purchase
+    form:
+      banknotes: Banknotes
 
   stands:
     show: 

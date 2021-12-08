@@ -2,23 +2,34 @@
   
   <div class="row">
     <div class="form-group col-md-6">
-        <%= form.label :amount, class: 'form-control-label' %>
-        <div class="input-group mb-3">
-          <%= form.number_field :amount, class: 'form-control', id: 'amount-field', min: 1, required: true %>
-          <div class="input-group-append">
-            <span class="input-group-text"><%= t('general.spiridoni', count: 10) %></span>
-            <span class="input-group-text" id="spiridon-equivalent"> = 0 RON</span>
-          </div>
+      <%= form.label :amount, class: 'form-control-label' %>
+      <div class="input-group mb-3">
+        <%= form.number_field :amount, class: 'form-control', id: 'amount-field', min: 1, required: true %>
+        <div class="input-group-append">
+          <span class="input-group-text"><%= t('general.spiridoni', count: 10) %></span>
+          <span class="input-group-text" id="spiridon-equivalent"> = 0 RON</span>
         </div>
+      </div>
+    </div>
+
+    <div class="form-group col-md-6">
+      <label class="form-control-label" for="spiridon_purchase_amount"><%= t('.banknotes') %></label><br/>
+      <div class="btn-group" role="group" aria-label="<%= t('.banknotes') %>">
+        <button type="button" class="rapid-value-btn btn btn-sm-mobile btn-outline-primary" data-value="1">5 lei</button>
+        <button type="button" class="rapid-value-btn btn btn-sm-mobile btn-outline-danger" data-value="2">10 lei</button>
+        <button type="button" class="rapid-value-btn btn btn-sm-mobile btn-outline-success" data-value="4">20 lei</button>
+        <button type="button" class="rapid-value-btn btn btn-sm-mobile btn-outline-warning" data-value="10">50 lei</button>
+        <button type="button" class="rapid-value-btn btn btn-sm-mobile btn-outline-info" data-value="20">100 lei</button>
+      </div>
     </div>
 
     <% if current_user.admin? %>
-      <div class="form-group col-md-6">
+      <div class="form-group col-12">
         <%= form.label :operator_id, t('activerecord.attributes.purchase.operator'), class: 'form-control-label' %>
         <%= form.collection_select(:operator_id, User.all, :id, :name, { selected: current_user.id }, { class: 'form-control', data: { controller: 'select' } }) %>
       </div>
     <% else %>
-      <div class="form-group col-md-6">
+      <div class="form-group col-12">
         <label class="form-control-label" for="operator"><%= t('activerecord.attributes.purchase.operator') %></label>
         <input class="form-control" type="text" name="operator" disabled value="<%= current_user.name %>">
       </div>
@@ -31,8 +42,14 @@
 <% end %>
 
 <script>
-  $('#amount-field').on('turbolinks:load input propertychange paste', function() {
-    console.log('change!')
+  $('#amount-field').on('turbolinks:load input propertychange paste banknote-clicked', function() {
     $('#spiridon-equivalent').text(' = ' + $(this).val() * 5 + ' RON')
   })
+
+  document.querySelectorAll('.rapid-value-btn').forEach((e) => e.addEventListener('click', () => {
+    document.querySelector('#amount-field').value = Number(document.querySelector('#amount-field').value) + parseInt(e.dataset.value)
+    console.log(Number(document.querySelector('#amount-field').value))
+    console.log(e.dataset.value)
+    document.getElementById('spiridon-equivalent').textContent = ' = ' + parseInt(document.querySelector('#amount-field').value) * 5 + ' RON'
+  }))
 </script>
