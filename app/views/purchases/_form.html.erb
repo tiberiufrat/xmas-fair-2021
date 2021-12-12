@@ -3,7 +3,12 @@
   <%= form.fields_for :purchased_products do |product_form| %>
     <%= render "purchases/purchased_product", f: product_form %>
   <% end %>
-  <%= link_to_add_fields icon('far fa-cart-plus', "#{t'general.add'} #{t 'activerecord.models.product.one'}"), form, :purchased_products, class: "btn btn-#{ user_signed_in? ? current_user.theme || 'primary' : 'primary' } mb-3" %>
+
+  <% if Product.any? %>
+    <%= link_to_add_fields icon('far fa-cart-plus', "#{t'general.add'} #{t 'activerecord.models.product.one'}"), form, :purchased_products, class: "btn btn-#{ user_signed_in? ? current_user.theme || 'primary' : 'primary' } mb-3" %>
+  <% else %>
+    <button type="button" data-toggle="tooltip" data-placement="top" title="<%= t('.no_products_tooltip') %>" class="btn mb-3 btn-<%= user_signed_in? ? current_user.theme || 'primary' : 'primary' %>"><i class="far fa-cart-plus"></i> <%= t'general.add' %> <%= t 'activerecord.models.product.one' %></button>
+  <% end %>
 
   <div class="row">
     <% if current_user.admin? %>
