@@ -32,4 +32,17 @@ class Stand < ApplicationRecord
   def value_products_sold
     products.map(&:total_sales).sum
   end
+
+  def self.with_products
+    Stand.all.reject { |s| s.products.empty? }
+  end
+
+  def self.with_products_grouped
+    all = []
+    Stand.with_products.each do |s|
+      products = s.products.map { |p| [p.icon_and_name, p.id] }
+      all << [s.name, products]
+    end
+    all
+  end
 end
