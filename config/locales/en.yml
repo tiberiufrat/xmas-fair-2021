@@ -166,6 +166,8 @@ en:
       register_new_purchase: Register a new purchase
     new:
       register_new_purchase: Register a new purchase
+    form:
+      no_products_tooltip: You haven't added any products yet.
 
   user_lists:
     form:

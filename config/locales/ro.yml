@@ -173,6 +173,8 @@ ro:
       register_new_purchase: Înregistrare tranzacție
     new:
       register_new_purchase: Înregistrează o tranzacție nouă
+    form:
+      no_products_tooltip: Încă nu ai adăugat niciun produs.
 
   user_lists:
     form:
