@@ -58,7 +58,7 @@
             </h5>
             <div class="h4 mt-4">
               <%= t('positions.' + current_user.position).capitalize %> <br/>
-              <font class="font-weight-light"><%= t('departments.' + current_user.department).capitalize %></font>
+              <font class="font-weight-light"><%= current_user.department.present? ? t('departments.' + current_user.department).capitalize : "N/A" %></font>
             </div>
           </div>
         </div>

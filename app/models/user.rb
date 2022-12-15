@@ -57,13 +57,13 @@ class User < ApplicationRecord
   end
 
   enum grade: {
-    grade_12:   0,
-    grade_11:   1,
-    grade_10a:  2,
-    grade_10d:  3,
-    grade_10o:  4,
-    grade_9a:   5,
-    grade_9o:   6
+    grade_12:   1,
+    grade_11a:  2,
+    grade_11d:  3,
+    grade_11o:  4,
+    grade_10a:  5,
+    grade_10o:  6,
+    grade_9:    7
   }
 
   enum department: {
